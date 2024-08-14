@@ -276,7 +276,7 @@ rm -rf ../master
 
 # Load devices Config
 if [ "$platform" = "x86_64" ]; then
-    curl -s https://$mirror/openwrt/23-config-musl-x86 > .config
+    curl -s https://raw.githubusercontent.com/$GITHUB_REPO/dev/standard/openwrt/23-config-musl-x86 > .config
     ALL_KMODS=y
 elif [ "$platform" = "bcm53xx" ]; then
     if [ "$MINIMAL_BUILD" = "y" ]; then
@@ -300,7 +300,7 @@ if [ "$MINIMAL_BUILD" = "y" ]; then
     [ "$platform" != "bcm53xx" ] && curl -s https://$mirror/openwrt/23-config-minimal-common >> .config
     echo 'VERSION_TYPE="minimal"' >> package/base-files/files/usr/lib/os-release
 else
-    [ "$platform" != "bcm53xx" ] && curl -s https://$mirror/openwrt/23-config-common >> .config
+    [ "$platform" != "bcm53xx" ] && curl -s https://raw.githubusercontent.com/$GITHUB_REPO/dev/standard/openwrt/23-config-common >> .config
     [ "$platform" = "armv8" ] && sed -i '/DOCKER/Id' .config
 fi
 
